@@ -1,0 +1,57 @@
+﻿@model VAT_TODOLIST.Models.VATTodoViewModel
+
+<form method="post" asp-action="DeletePost">
+    <input asp-for="Id" hidden />
+    <div class="border p-3">
+        
+        <div class="form-group row">
+            <h2 class="text-black-50 pl-3">Delete Todo</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group row">
+                   
+                    <div class="col-6">
+                        <div class="col-4"><label asp-for="Name"></label></div>
+                        <input asp-for="Name" disabled class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-6">
+                        <div class="col-4"><label asp-for="EmailAddress"></label></div>
+                        <input asp-for="EmailAddress" disabled class="form-control" />
+                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4"><label asp-for="TaskName"></label></div>
+                    <div class="col-4"><label asp-for="TaskDate"></label></div>
+                    <div class="col-4"><label asp-for="Priority"></label></div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <input asp-for="TaskName" disabled class="form-control" />                        
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="TaskDate" disabled class="form-control" />                      
+                    </div>
+                    <div class="col-4">
+                        <input asp-for="Priority" disabled class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-2 row">
+                        <input type="text" asp-for="HiddenId"   />
+                        <div class="col"><input type="submit" class="btn btn-danger w-75" value="Deletes" /></div>
+                        <div class="col"><a class="btn btn-success w-75" asp-action="Index">Go back </a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -1,0 +1,77 @@
+﻿@using VAT_TODOLIST.Utility
+@model IEnumerable<VAT_TODOLIST.Models.VATTodoModel>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]        
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">       
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+
+<dv class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Todo List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Todo" asp-action="Create" class="btn btn-success">Create new Todo</a>
+        </div>
+    </div>
+    <br />
+
+    @if(Model != null && Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Email Address
+                    </th>
+                    <th>
+                        Task Name
+                    </th>
+                    <th>
+                        Task Date
+                    </th>
+                    <th>
+                        Priority
+                    </th>
+                    <th>
+                        Changes
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var Todo in Model){
+                    <tr>
+                        <td width="25%">@Todo.Name</td>
+                        <td width="25%">@Todo.EmailAddress</td>
+                        <td width="25%">@Todo.TaskName</td>
+                        <td width="25%">@Todo.TaskDate</td>
+                        <td width="25">@Todo.Priority</td>
+                        <td width="25%">
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="Todo" asp-action="Update" asp-route-Id="@Encryption.encryptId(Todo.Id.ToString())" class="btn btn-primary mx-1">Update</a>
+                                <a asp-controller="Todo" asp-action="Delete" asp-route-Id="@Encryption.encryptId(Todo.Id.ToString())" class="btn btn-danger mx-1">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No Items Created Yet</p>
+    }
+</dv>
